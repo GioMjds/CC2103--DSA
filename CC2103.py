@@ -81,7 +81,20 @@ class SearchAlgo:
         print(f"Sorted Array : {self.ARRAY_LIST}")
         input("Press Enter to continue...")
 
-    # 6. Merge Sort
+    # 6. Quick Sort
+    def quickSort(self, array):
+        if len(array) <= 1:
+            return array
+
+        pivot = array[len(array) // 2]
+        left = [x for x in array if x < pivot]
+        middle = [x for x in array if x == pivot]
+        right = [x for x in array if x > pivot]
+        
+        print(f"{self.quickSort(left)} {middle} {self.quickSort(right)}")
+        input("Press Enter to continue...")
+
+    # 7. Merge Sort
     def mergeSort(self, array):
         if array is None:
             array = self.ARRAY_LIST
@@ -113,26 +126,17 @@ class SearchAlgo:
             print(f"Sorted Array : {result}")
             middle = len(result) // 2
             leftElements = result[:middle]
-            middleElement = result[middle] if len(result) % 2 != 0 else f"{result[middle - 1]} and {result[middle]}"
-            rightElements = result[middle+1:] if len(result) % 2 != 0 else result[middle+1]
-            print(f"Left Element(s) : {leftElements}")
-            print(f"Middle Element : {middleElement}")
-            print(f"Right Element(s) : {rightElements}")
+            middleElement = result[middle]
+            rightElements = result[middle:]
+            if len(result) % 2 == 0:
+                print(f"Left Element(s) : {leftElements}")
+                print(f"Right Element(s) : {rightElements}")
+            else:
+                print(f"Left Element(s) : {leftElements}")
+                print(f"Middle Element : {middleElement}")
+                print(f"Right Element(s) : {rightElements}")
             input("Press Enter to continue...")
         return result
-
-    # 7. Quick Sort
-    def quickSort(self, array):
-        if len(array) <= 1:
-            return array
-
-        pivot = array[len(array) // 2]
-        left = [x for x in array if x < pivot]
-        middle = [x for x in array if x == pivot]
-        right = [x for x in array if x > pivot]
-        
-        print(f"{self.quickSort(left)} {middle} {self.quickSort(right)}")
-        input("Press Enter to continue...")
 
     # Main Menu
     def run(self):
