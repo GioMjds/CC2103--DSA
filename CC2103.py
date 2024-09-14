@@ -108,6 +108,13 @@ class SearchAlgo:
 
         if array == self.ARRAY_LIST:
             print(f"Sorted Array : {result}")
+            middle = len(result) // 2
+            leftElements = result[:middle]
+            middleElement = result[middle] if len(result) % 2 != 0 else f"{result[middle - 1]} and {result[middle]}"
+            rightElements = result[middle+1:] if len(result) % 2 != 0 else result[middle+1]
+            print(f"Left Element(s) : {leftElements}")
+            print(f"Middle Element : {middleElement}")
+            print(f"Right Element(s) : {rightElements}")
             input("Press Enter to continue...")
         return result
 
