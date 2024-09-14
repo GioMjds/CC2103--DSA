@@ -1,13 +1,15 @@
 # Majadas, Gio
 # BSIT-SD 2A || CC 2103 - Data Structures and Algorithm
 
+# For aesthetic purposes only heheh
 import time
 import os
 
 class SearchAlgo:
     def __init__(self):
         self.ARRAY_LIST = []
-        
+
+    # Need for other functions, to ask the user how many elements in an array to be stored
     def createArray(self):
         size = int(input("Enter the size of the array: "))
         self.ARRAY_LIST = [int(input(f"Enter element {i+1}: ")) for i in range(size)]
@@ -21,6 +23,7 @@ class SearchAlgo:
                 time.sleep(2)
                 return
         print("Element not found")
+        time.sleep(2)
 
     # 2. Binary Search
     def binarySearch(self, target):
@@ -36,7 +39,8 @@ class SearchAlgo:
                 low = mid + 1
             else:
                 high = mid - 1
-        return -1
+        print("Element not found")
+        time.sleep(2)
 
     # 3. Bubble Sort
     def bubbleSort(self):
@@ -76,6 +80,8 @@ class SearchAlgo:
 
     # 6. Merge Sort
     def mergeSort(self, array):
+        if array is None:
+            array = self.ARRAY_LIST
         if len(array) <= 1:
             return array
 
@@ -100,6 +106,9 @@ class SearchAlgo:
         result.extend(left[i:])
         result.extend(right[j:])
 
+        if array == self.ARRAY_LIST:
+            print(f"Sorted Array : {result}")
+            input("Press Enter to continue...")
         return result
 
     # 7. Quick Sort
@@ -114,46 +123,58 @@ class SearchAlgo:
         
         print(f"{self.quickSort(left)} {middle} {self.quickSort(right)}")
 
+    # Main Menu
     def run(self):
         while True:
-            os.system
-            print(" -- Algorithm and Searching Program Menu -- ")
-            print("1. Linear Search")
-            print("2. Binary Search")
-            print("3. Bubble Sort")
-            print("4. Insertion Sort")
-            print("5. Selection Sort")
-            print("6. Merge Sort")
-            print("7. Quick Sort")
-            print("8. Exit")
-            choice = int(input("Enter your choice : "))
+            os.system("cls")
+            print(" -- Algorithm and Searching Program Menu -- \n")
+            print("\t1. Linear Search")
+            print("\t2. Binary Search")
+            print("\t3. Bubble Sort")
+            print("\t4. Insertion Sort")
+            print("\t5. Selection Sort")
+            print("\t6. Merge Sort")
+            print("\t7. Quick Sort")
+            print("\t8. Exit")
+            choice = int(input("\n\tEnter your choice : "))
+            os.system("cls")
             if choice == 1:
+                print("\t-- Linear Search --\n")
                 self.createArray()
                 self.linearSearch(self.ARRAY_LIST)
             elif choice == 2:
+                print("\t-- Binary Search --\n")
                 self.createArray()
                 self.binarySearch(self.ARRAY_LIST)
             elif choice == 3:
+                print("\t-- Bubble Sort --\n")
                 self.createArray()
                 self.bubbleSort()
             elif choice == 4:
+                print("\t-- Insertion Sort --\n")
                 self.createArray()
                 self.insertionSort()
             elif choice == 5:
+                print("\t-- Selection Sort --\n")
                 self.createArray()
                 self.selectionSort()
             elif choice == 6:
+                print("\t-- Merge Sort --\n")
                 self.createArray()
                 self.mergeSort(self.ARRAY_LIST)
             elif choice == 7:
+                print("\t-- Quick Sort  --\n")
                 self.createArray()
                 self.quickSort(self.ARRAY_LIST)
             elif choice == 8:
+                # Exiting the program after a 2 second delay
                 print("Exiting...")
                 time.sleep(2)
+                print("Goodbye!")
                 break
             else:
-                print("invalid choice. Please try again!")
+                print("Invalid choice. Please try again!")
+                os.system("cls")
 
 if __name__ == "__main__":
     searching = SearchAlgo()
