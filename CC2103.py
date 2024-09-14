@@ -54,6 +54,7 @@ class SearchAlgo:
                 if not swapped:
                     break
         print(f"Sorted Array : {self.ARRAY_LIST}")
+        input("Press Enter to continue...")
 
     # 4. Insertion Sort
     def insertionSort(self):
@@ -66,6 +67,7 @@ class SearchAlgo:
                 j -= 1
             self.ARRAY_LIST[j + 1] = key
         print(f"Sorted Array : {self.ARRAY_LIST}")
+        input("Press Enter to continue...")
 
     # 5. Selection Sort
     def selectionSort(self):
@@ -77,6 +79,7 @@ class SearchAlgo:
                     minIndex = j
             self.ARRAY_LIST[i], self.ARRAY_LIST[minIndex] = self.ARRAY_LIST[minIndex], self.ARRAY_LIST[i]
         print(f"Sorted Array : {self.ARRAY_LIST}")
+        input("Press Enter to continue...")
 
     # 6. Merge Sort
     def mergeSort(self, array):
@@ -129,19 +132,20 @@ class SearchAlgo:
         right = [x for x in array if x > pivot]
         
         print(f"{self.quickSort(left)} {middle} {self.quickSort(right)}")
+        input("Press Enter to continue...")
 
     # Main Menu
     def run(self):
         while True:
-            os.system("cls")
+            # os.system("cls")
             print(" -- Algorithm and Searching Program Menu -- \n")
             print("\t1. Linear Search")
             print("\t2. Binary Search")
             print("\t3. Bubble Sort")
             print("\t4. Insertion Sort")
             print("\t5. Selection Sort")
-            print("\t6. Merge Sort")
-            print("\t7. Quick Sort")
+            print("\t6. Quick Sort")
+            print("\t7. Merge Sort")
             print("\t8. Exit")
             choice = int(input("\n\tEnter your choice : "))
             os.system("cls")
@@ -166,13 +170,13 @@ class SearchAlgo:
                 self.createArray()
                 self.selectionSort()
             elif choice == 6:
-                print("\t-- Merge Sort --\n")
-                self.createArray()
-                self.mergeSort(self.ARRAY_LIST)
-            elif choice == 7:
                 print("\t-- Quick Sort  --\n")
                 self.createArray()
                 self.quickSort(self.ARRAY_LIST)
+            elif choice == 7:
+                print("\t-- Merge Sort --\n")
+                self.createArray()
+                self.mergeSort(self.ARRAY_LIST)
             elif choice == 8:
                 # Exiting the program after a 2 second delay
                 print("Exiting...")
