@@ -13,6 +13,7 @@ class SearchAlgo:
         self.ARRAY_LIST = []
 
     # Need for other functions, to ask the user how many elements in an array to be stored
+    # And has error handling
     def createArray(self):
         while True:
             try:
@@ -36,7 +37,7 @@ class SearchAlgo:
             if element == target:
                 print(f"The index number is : {i}, and the element is : {target} | LINEAR SEARCH")
                 input("Press Enter to continue...")
-                return
+                return self.ARRAY_LIST
         print("Element not found")
         input("Press Enter to continue...")
 
@@ -49,7 +50,7 @@ class SearchAlgo:
             if self.ARRAY_LIST[mid] == target:
                 print(f"The index number is : {mid}, and the element is : {target} | BINARY SEARCH")
                 input("Press Enter to continue...")
-                return mid
+                return self.ARRAY_LIST
             elif self.ARRAY_LIST[mid] < target:
                 low = mid + 1
             else:
@@ -66,23 +67,26 @@ class SearchAlgo:
                 if self.ARRAY_LIST[j] > self.ARRAY_LIST[j + 1]:
                     self.ARRAY_LIST[j], self.ARRAY_LIST[j + 1] = self.ARRAY_LIST[j + 1], self.ARRAY_LIST[j]
                     swapped = True
-                if not swapped:
-                    break
+            if not swapped:
+                break
         print(f"Sorted Array : {self.ARRAY_LIST}")
         input("Press Enter to continue...")
+        return self.ARRAY_LIST
 
     # 4. Insertion Sort
     def insertionSort(self):
-        n = len(self.ARRAY_LIST)
-        for i in range(1, n):
-            key = self.ARRAY_LIST[i]
+        array = self.ARRAY_LIST[:]
+        for i in range(1, len(array)):
+            key = array[i]
             j = i - 1
-            while j >= 0 and key < self.ARRAY_LIST[j]:
-                self.ARRAY_LIST[j + 1] = self.ARRAY_LIST[j]
+            while j >= 0 and key < array[j]:
+                array[j + 1] = array[j]
                 j -= 1
-            self.ARRAY_LIST[j + 1] = key
+            array[j + 1] = key
+        self.ARRAY_LIST = array
         print(f"Sorted Array : {self.ARRAY_LIST}")
         input("Press Enter to continue...")
+        return self.ARRAY_LIST
 
     # 5. Selection Sort
     def selectionSort(self):
@@ -95,6 +99,7 @@ class SearchAlgo:
             self.ARRAY_LIST[i], self.ARRAY_LIST[minIndex] = self.ARRAY_LIST[minIndex], self.ARRAY_LIST[i]
         print(f"Sorted Array : {self.ARRAY_LIST}")
         input("Press Enter to continue...")
+        return self.ARRAY_LIST
 
     # 6. Quick Sort
     def quickSort(self, array, low, high):
@@ -112,6 +117,7 @@ class SearchAlgo:
         if low == 0 and high == len(array) - 1:
             print(f"Sorted Array : {array}")
             input("Press Enter to continue...")
+            return self.ARRAY_LIST
 
     # 7. Merge Sort
     def mergeSort(self, array):
@@ -146,9 +152,10 @@ class SearchAlgo:
             middle = len(result) // 2
             leftElements = result[:middle]
             middleElement = result[middle]
-            rightElements = result[middle:]
+            rightElements = result[middle + 1:]
             if len(result) % 2 == 0:
                 print(f"Left Element(s) : {leftElements}")
+                print("-- No Middle Element --")
                 print(f"Right Element(s) : {rightElements}")
             else:
                 print(f"Left Element(s) : {leftElements}")
@@ -172,6 +179,7 @@ class SearchAlgo:
             print("\t8. Exit")
             choice = int(input("\n\tEnter your choice : "))
             os.system("cls")
+            self.ARRAY_LIST = []
             if choice == 1:
                 print("\t-- Linear Search --\n")
                 self.createArray()
@@ -209,6 +217,20 @@ class SearchAlgo:
             else:
                 print("Invalid choice. Please try again!")
                 os.system("cls")
+            os.system("cls")
+            answer = input("\n\tDo you want to use the program again? (Y/N): ")
+            while True:
+                if answer.lower() == "y":
+                    break
+                elif answer.lower() == "n":
+                    os.system("cls")
+                    print("Exiting...")
+                    time.sleep(2)
+                    print("Goodbye!")
+                    exit()
+                else:
+                    print(f"\n\t{ERROR}Invalid input. Please enter either Y or N.{RESET}")
+                    answer = input("\n\tDo you want to use the program again? (Y/N): ")
 
 if __name__ == "__main__":
     searching = SearchAlgo()
