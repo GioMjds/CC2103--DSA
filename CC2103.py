@@ -216,7 +216,7 @@ class SearchAlgo:
                 print(f"{ERROR}Invalid choice. Please try again!{RESET}")
                 os.system("cls")
             os.system("cls")
-            answer = input("\n\tDo you want to use the program again? (Y/N): ")
+            answer = str(input("\n\tDo you want to use the program again? (Y/N): "))
             while True:
                 if answer.lower() == "y":
                     break
@@ -228,7 +228,7 @@ class SearchAlgo:
                     exit()
                 else:
                     print(f"\n\t{ERROR}Invalid input. Please enter either Y or N.{RESET}")
-                    answer = input("\n\tDo you want to use the program again? (Y/N): ")
+                    answer = str(input("\n\tDo you want to use the program again? (Y/N): "))
 
 if __name__ == "__main__":
     searching = SearchAlgo()
