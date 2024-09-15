@@ -5,14 +5,29 @@
 import time
 import os
 
+ERROR = "\033[38;5;196m"
+RESET = "\033[0m"
+
 class SearchAlgo:
     def __init__(self):
         self.ARRAY_LIST = []
 
     # Need for other functions, to ask the user how many elements in an array to be stored
     def createArray(self):
-        size = int(input("Enter the size of the array: "))
-        self.ARRAY_LIST = [int(input(f"Enter element {i+1}: ")) for i in range(size)]
+        while True:
+            try:
+                size = int(input("Enter the size of the array: "))
+                break
+            except ValueError:
+                print(f"{ERROR}Invalid input. Please enter a valid integer for the size of the array.{RESET}")
+        for i in range(size):
+            while True:
+                try:
+                    element = int(input(f"Enter element {i+1}: "))
+                    self.ARRAY_LIST.append(element)
+                    break
+                except ValueError:
+                    print(f"{ERROR}Invalid input. Please enter a valid integer for element {i+1}.{RESET}")
 
     # 1. Linear Search
     def linearSearch(self, target):
@@ -141,7 +156,7 @@ class SearchAlgo:
     # Main Menu
     def run(self):
         while True:
-            # os.system("cls")
+            os.system("cls")
             print(" -- Algorithm and Searching Program Menu -- \n")
             print("\t1. Linear Search")
             print("\t2. Binary Search")
