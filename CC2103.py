@@ -12,8 +12,6 @@ class SearchAlgo:
     def __init__(self):
         self.ARRAY_LIST = []
 
-    # Need for other functions, to ask the user how many elements in an array to be stored
-    # And has error handling
     def createArray(self):
         while True:
             try:
@@ -155,7 +153,7 @@ class SearchAlgo:
             rightElements = result[middle + 1:]
             if len(result) % 2 == 0:
                 print(f"Left Element(s) : {leftElements}")
-                print("-- No Middle Element --")
+                print("Middle Element: None")
                 print(f"Right Element(s) : {rightElements}")
             else:
                 print(f"Left Element(s) : {leftElements}")
@@ -215,7 +213,7 @@ class SearchAlgo:
                 print("Goodbye!")
                 break
             else:
-                print("Invalid choice. Please try again!")
+                print(f"{ERROR}Invalid choice. Please try again!{RESET}")
                 os.system("cls")
             os.system("cls")
             answer = input("\n\tDo you want to use the program again? (Y/N): ")
