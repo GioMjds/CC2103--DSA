@@ -35,10 +35,10 @@ class SearchAlgo:
         for i, element in enumerate(self.ARRAY_LIST):
             if element == target:
                 print(f"The index number is : {i}, and the element is : {target} | LINEAR SEARCH")
-                time.sleep(2)
+                input("Press Enter to continue...")
                 return
         print("Element not found")
-        time.sleep(2)
+        input("Press Enter to continue...")
 
     # 2. Binary Search
     def binarySearch(self, target):
@@ -48,14 +48,14 @@ class SearchAlgo:
             mid = (low + high) // 2
             if self.ARRAY_LIST[mid] == target:
                 print(f"The index number is : {mid}, and the element is : {target} | BINARY SEARCH")
-                time.sleep(2)
+                input("Press Enter to continue...")
                 return mid
             elif self.ARRAY_LIST[mid] < target:
                 low = mid + 1
             else:
                 high = mid - 1
         print("Element not found")
-        time.sleep(2)
+        input("Press Enter to continue...")
 
     # 3. Bubble Sort
     def bubbleSort(self):
@@ -97,17 +97,21 @@ class SearchAlgo:
         input("Press Enter to continue...")
 
     # 6. Quick Sort
-    def quickSort(self, array):
-        if len(array) <= 1:
-            return array
-
-        pivot = array[len(array) // 2]
-        left = [x for x in array if x < pivot]
-        middle = [x for x in array if x == pivot]
-        right = [x for x in array if x > pivot]
-        
-        print(f"{self.quickSort(left)} {middle} {self.quickSort(right)}")
-        input("Press Enter to continue...")
+    def quickSort(self, array, low, high):
+        if low < high:
+            pivot = array[high]
+            i = low - 1
+            for j in range(low, high):
+                if array[j] <= pivot:
+                    i += 1
+                    array[i], array[j] = array[j], array[i]
+            array[i + 1], array[high] = array[high], array[i + 1]
+            pivotIndex = i + 1
+            self.quickSort(array, low, pivotIndex - 1)
+            self.quickSort(array, pivotIndex + 1, high)
+        if low == 0 and high == len(array) - 1:
+            print(f"Sorted Array : {array}")
+            input("Press Enter to continue...")
 
     # 7. Merge Sort
     def mergeSort(self, array):
@@ -191,7 +195,7 @@ class SearchAlgo:
             elif choice == 6:
                 print("\t-- Quick Sort  --\n")
                 self.createArray()
-                self.quickSort(self.ARRAY_LIST)
+                self.quickSort(self.ARRAY_LIST, 0, len(self.ARRAY_LIST) - 1)
             elif choice == 7:
                 print("\t-- Merge Sort --\n")
                 self.createArray()
